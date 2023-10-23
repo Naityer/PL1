@@ -1,6 +1,8 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <vector>
+#include <algorithm>
 
 #ifndef PAQUETE_HPP
 #define PAQUETE_HPP
@@ -27,6 +29,8 @@ public:
     void setNum_seguimiento(bool prioridad);
     char setDNI();
     int getCantidadPaquetes();
+    void setCountEstandar(int v);
+    void setCountUrgente(int v);
     ~Paquete();
     
     
@@ -40,11 +44,13 @@ private:
     
     static int countEstandarID;
     static int countUrgenteID;
+    vector <int> seguimientoDuplicados{0};
 
 //METODOS
     void generarDNI();
     void generarNumSeguimiento(bool prioridad);
     void asignarID();
+    bool isRepetido(int num_seguimiento);
 };
 
 #endif // PAQUETE_HPP

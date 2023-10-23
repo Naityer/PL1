@@ -30,9 +30,21 @@ void Paquete::generarDNI()
 void Paquete::generarNumSeguimiento(bool prioridad)
 {
     if(prioridad == 0) {
-        this->num_seguimiento = rand() % 500;
+        int valor = rand() % 500;
+        if(isRepetido(valor)) {
+            generarNumSeguimiento(0);
+        } else {
+            this->num_seguimiento = valor;
+            seguimientoDuplicados.push_back(num_seguimiento);
+        }
     } else {
-        this->num_seguimiento = rand() % 500 + 499;
+        int valor = rand() % 500 + 499;
+        if(isRepetido(valor)) {
+            generarNumSeguimiento(1);
+        } else {
+            this->num_seguimiento = valor;
+            seguimientoDuplicados.push_back(num_seguimiento);
+        }
     }
 }
 
@@ -50,10 +62,23 @@ void Paquete::asignarID()
     } 
 }
 
+bool Paquete::isRepetido(int num_seguimiento) {
+    
+    int key = num_seguimiento;
+    if (find(seguimientoDuplicados.begin(), seguimientoDuplicados.end(), key) != seguimientoDuplicados.end()) {
+        cout << key << " REPETIDO cambiando num_segumiento ";
+        return true;
+    }
+    else {
+        cout << "NUM_SEGUIMIENTO disponible -> " << key;
+    }
+    return 0;
+}
+
 // SETTER ===================================================================================================
 
 void Paquete::setID(){
-    this->asignarID();
+     this->asignarID();
 }
 
 void Paquete::setNum_seguimiento(bool prioridad)
@@ -88,9 +113,17 @@ int Paquete::getCountEstandar()
     return countEstandarID;
 }
 
+void Paquete::setCountEstandar(int v) {
+    this->countEstandarID = v;
+}
+
 int Paquete::getCountUrgente()
 {
     return countUrgenteID;
+}
+
+void Paquete::setCountUrgente(int v) {
+    this->countUrgenteID = v;
 }
 
 Paquete::~Paquete()

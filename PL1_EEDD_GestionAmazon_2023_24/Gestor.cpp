@@ -154,6 +154,12 @@ void Gestor::enlistarPedidos()
         cantidadListados++;
     }
     
+    // RESET COUNTERS
+//    enlistarA->setCountEstandar(0);
+//    enlistarB->setCountEstandar(0);
+//    enlistarC->setCountUrgente(51);
+//    enlistarD->setCountUrgente(51);
+    
     cout << "\n=============================== " << endl;
     cout << "\nLista ESTANDAR = " << listaEstandar->getLongitud() << endl;
     cout << "Lista URGENTE = " << listaUrgente->getLongitud() << endl;
