@@ -2,6 +2,7 @@
 
 Lista::Lista()
 {
+    longitud = 0;
     primero = actual = final = NULL;
 }
 
