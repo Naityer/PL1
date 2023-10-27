@@ -28,13 +28,13 @@ public:
     void reiniciar(); // Option M
     ~Gestor();
     
-//    PedidosEnPila()
-//    PedidosEnestacionA() 
-//    PedidosEnestacionB() 
-//    PedidosEnestacionC() 
-//    PedidosEnestacionD()
-//    PedidosEnListaEstandar()
-//    PedidosEnListaUrgentes()
+    int PedidosEnPila();
+    int PedidosEnEstacionA();
+    int PedidosEnEstacionB();
+    int PedidosEnEstacionC();
+    int PedidosEnEstacionD();
+    int PedidosEnListaEstandar();
+    int PedidosEnListaUrgentes();
 //    PedidosEnArbol()
     
 private: 

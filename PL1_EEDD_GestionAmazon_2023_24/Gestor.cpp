@@ -194,7 +194,49 @@ void Gestor::buscarPedidos()
     listaUrgente->buscarElemento('f');
 }
 
-// INTERFAZ
+// INTERFAZ 2
+
+int Gestor::PedidosEnPila()
+{
+    int pedidos = pila->getLongitud();
+    return pedidos;
+}
+
+int Gestor::PedidosEnEstacionA()
+{
+    int pedidos = estacionA->getLongitud();
+    return pedidos;
+}
+
+int Gestor::PedidosEnEstacionB()
+{
+    int pedidos = estacionB->getLongitud();
+    return pedidos;
+}
+
+int Gestor::PedidosEnEstacionC()
+{
+    int pedidos = estacionC->getLongitud();
+    return pedidos;
+}
+
+int Gestor::PedidosEnEstacionD()
+{
+    int pedidos = estacionD->getLongitud();
+    return pedidos;
+}
+
+int Gestor::PedidosEnListaEstandar()
+{
+    int pedidos = listaEstandar->getLongitud();
+    return pedidos;
+}
+
+int Gestor::PedidosEnListaUrgentes()
+{
+    int pedidos = listaUrgente->getLongitud();
+    return pedidos;
+}
 
 void Gestor::reiniciar()
 {
