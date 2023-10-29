@@ -122,19 +122,19 @@ void Gestor::enlistarPedidos()
     
     while(estacionA->getLongitud() > 0 || estacionB->getLongitud() > 0 || estacionC->getLongitud() > 0 || estacionD->getLongitud() > 0)
     {
-        if(estacionA->getLongitud() > 0) {
-            cout << "\nCantidad estacionA = " << estacionA->getLongitud() << endl;
-            cout << "Paquete ESTANDAR (estacionA) " << enlistarA << " enlistado" << endl;
-            enlistarA = estacionA->eliminar(); // ESTANDAR
-            enlistarA->setNum_seguimiento(0);
-            listaEstandar->insertarNodo(enlistarA, 'p');
-        
-        } else if (estacionB->getLongitud() > 0) {
+        if (estacionB->getLongitud() > 0) {
             cout << "\nCantidad estacionB = " << estacionB->getLongitud() << endl;
             cout << "Paquete ESTANDAR (estacionB) " << enlistarB << " enlistado" << endl;
             enlistarB = estacionB->eliminar(); // ESTANDAR
             enlistarB->setNum_seguimiento(0);
             listaEstandar->insertarNodo(enlistarB, 'p');  
+        
+        } else if(estacionA->getLongitud() > 0) {
+            cout << "\nCantidad estacionA = " << estacionA->getLongitud() << endl;
+            cout << "Paquete ESTANDAR (estacionA) " << enlistarA << " enlistado" << endl;
+            enlistarA = estacionA->eliminar(); // ESTANDAR
+            enlistarA->setNum_seguimiento(0);
+            listaEstandar->insertarNodo(enlistarA, 'p');
             
         } else if (estacionC->getLongitud() > 0) {
             cout << "\nCantidad estacionC = " << estacionC->getLongitud() << endl;
@@ -188,13 +188,13 @@ void Gestor::muestraPedidosUrgentes()
 
 void Gestor::buscarPedidos()
 {
-//    listaEstandar->recorrerLista(true);
+    listaEstandar->recorrerLista(true);
     listaEstandar->buscarElemento('p');
-//    listaUrgente->recorrerLista(false);
+    listaUrgente->recorrerLista(false);
     listaUrgente->buscarElemento('f');
 }
 
-// INTERFAZ 
+// INTERFAZ SUPERIOR
 
 int Gestor::PedidosEnPila()
 {
