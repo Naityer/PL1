@@ -55,7 +55,7 @@ void Lista::buscarElemento(char c) {
         }
         
         // Datos de la fila
-        cout << left << setw(20) << aux->paquete->getPrioridad() << setw(20) << aux->paquete->getID() << setw(20) << aux->paquete->getNum_seguimiento() << setw(20) << aux->paquete->getDNI() << endl;
+        cout << left << setw(20) << "URGENTE" << setw(20) << aux->paquete->getID() << setw(20) << aux->paquete->getNum_seguimiento() << setw(20) << aux->paquete->getDNI() << endl;
         // Separacion de columnas
         cout << left << setw(20) << "______________" << setw(20) << "__________" << setw(20) << "_______________" << setw(20) << "___________" << endl;
         
@@ -72,7 +72,7 @@ void Lista::buscarElemento(char c) {
         primero->anterior = NULL; 
         }
         // Datos de la fila
-        cout << left << setw(20) << aux->paquete->getPrioridad() << setw(20) << aux->paquete->getID() << setw(20) << aux->paquete->getNum_seguimiento() << setw(20) << aux->paquete->getDNI() << endl;
+        cout << left << setw(20) << "ESTANDAR" << setw(20) << aux->paquete->getID() << setw(20) << aux->paquete->getNum_seguimiento() << setw(20) << aux->paquete->getDNI() << endl;
         // Separacion de columnas
         cout << left << setw(20) << "______________" << setw(20) << "__________" << setw(20) << "_______________" << setw(20) << "___________" << endl;
     }
@@ -144,6 +144,7 @@ Lista::~Lista()
     while (primero) {
         aux = primero;
         primero = primero->siguiente;
+        longitud--;
         delete aux;
     }
     

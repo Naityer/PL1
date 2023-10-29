@@ -17,7 +17,7 @@ int main(int argc, char** argv)
              << gestor.PedidosEnEstacionD()
              << " \n\tPedidos en las listas:\n \t\tEstandar-> "
              << gestor.PedidosEnListaEstandar() << "\tUrgentes-> " << gestor.PedidosEnListaUrgentes()
-             << "\n\tPedidos en el arbol -> " << 0 /*gestor.PedidosEnArbol()*/
+//PARTE 2             << "\n\tPedidos en el arbol -> " << 0 /*gestor.PedidosEnArbol()*/
              << "\n";
         cout << "\t----------------------------------------------------------------"
                 "------\n\n";
@@ -40,7 +40,8 @@ int main(int argc, char** argv)
                 "prioridad.\n";
         cout << "\tM. Reiniciar el programa.\n";
         
-        
+ /*     //PARTE 2
+
         cout << "\tN. Crear y dibujar el ABB en consola.\n";
         cout << "\tO. Mostrar los datos de todos los Pedidos Estandar ordenados "
                 "por numero de seguimiento en orden ascendente.\n";
@@ -58,6 +59,8 @@ int main(int argc, char** argv)
         cout << "\tU. Eliminar un Pedido indicado por su numero de seguimiento "
                 "(que se pide desde consola) y mostrar el arbol "
                 "resultante tras la eliminacion de dicho Pedido.\n";
+*/
+
         cout << "\tS. Salir.\n\n";
 
         cout << "\tIndique la opcion deseada: ";
@@ -107,7 +110,8 @@ int main(int argc, char** argv)
         case 'M':
             gestor.reiniciar();
             break;
-/*            //...;
+
+/*      //PARTE 2
             break;
         case 'N':
             //...;

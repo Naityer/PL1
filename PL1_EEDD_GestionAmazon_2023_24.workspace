@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="PL1_EEDD_GestionAmazon_2023_24" Database="" Version="10000">
-  <Project Name="GestionPaqueteriaAmazon" Path="PL1_EEDD_GestionAmazon_2023_24/PL1_EEDD_GestionAmazon_2023_24.project" Active="Yes"/>
+  <Project Name="PECLGarciaIbanezPedro" Path="PL1_EEDD_GestionAmazon_2023_24/PL1_EEDD_GestionAmazon_2023_24.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug">
       <Environment/>
-      <Project Name="GestionPaqueteriaAmazon" ConfigName="Debug"/>
+      <Project Name="PECLGarciaIbanezPedro" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release">
       <Environment/>
-      <Project Name="GestionPaqueteriaAmazon" ConfigName="Release"/>
+      <Project Name="PECLGarciaIbanezPedro" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

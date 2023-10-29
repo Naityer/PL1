@@ -8,7 +8,7 @@ Paquete::Paquete()
 
 //CONTADORES ESTATICOS - PAQUETES ====================================================================================
 int Paquete::countEstandarID = 0;
-int Paquete::countUrgenteID = 51;
+int Paquete::countUrgenteID = 50;
 
 //FUNCIONES DE PAQUETES ==============================================================================================
 
@@ -56,7 +56,7 @@ void Paquete::asignarID()
             this->ID = countEstandarID;
     
     // 1 - PRIORIDAD URGENTE
-    } else if (countUrgenteID >= 51 && countUrgenteID < 99 && this->prioridad == 1) {
+    } else if (countUrgenteID >= 50 && countUrgenteID < 99 && this->prioridad == 1) {
         countUrgenteID++;
         this->ID = countUrgenteID;
     } 

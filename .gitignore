@@ -1,7 +1,0 @@
-
-*.tags
-*.session
-*.json
-*.mk
-*.cpp.o
-*.exe

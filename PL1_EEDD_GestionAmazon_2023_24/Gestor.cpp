@@ -188,13 +188,13 @@ void Gestor::muestraPedidosUrgentes()
 
 void Gestor::buscarPedidos()
 {
-    listaEstandar->recorrerLista(true);
+//    listaEstandar->recorrerLista(true);
     listaEstandar->buscarElemento('p');
-    listaUrgente->recorrerLista(false);
+//    listaUrgente->recorrerLista(false);
     listaUrgente->buscarElemento('f');
 }
 
-// INTERFAZ 2
+// INTERFAZ 
 
 int Gestor::PedidosEnPila()
 {
