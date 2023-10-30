@@ -188,10 +188,13 @@ void Gestor::muestraPedidosUrgentes()
 
 void Gestor::buscarPedidos()
 {
-    listaEstandar->recorrerLista(true);
-    listaEstandar->buscarElemento('p');
-    listaUrgente->recorrerLista(false);
-    listaUrgente->buscarElemento('f');
+    if(listaEstandar->getLongitud() + listaUrgente->getLongitud() > 0) {
+        //listaEstandar->recorrerLista(true);
+        listaEstandar->buscarElemento('p');
+        //listaUrgente->recorrerLista(false);
+        listaUrgente->buscarElemento('f');
+    
+    }
 }
 
 // INTERFAZ SUPERIOR
