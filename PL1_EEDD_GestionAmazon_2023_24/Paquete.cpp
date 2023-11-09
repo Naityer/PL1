@@ -12,6 +12,27 @@ int Paquete::countUrgenteID = 50;
 
 //FUNCIONES DE PAQUETES ==============================================================================================
 
+void Paquete::mostrar()
+{
+    pnodoPila aux = ultimo;
+    cout << "\tEl contenido de la pila" << endl;
+    cout << "===================================" << endl;
+    cout << endl; 
+    
+    // Títulos de las columnas
+    cout << left << setw(20) << "TIPO_PRIORIDAD" << setw(20) << "ID_PAQUETE" << setw(20) << "NUM_SEGUIMIENTO" << setw(20) << "DNI_CLIENTE" << endl;
+    cout << left << setw(20) << "______________" << setw(20) << "__________" << setw(20) << "_______________" << setw(20) << "___________" << endl;
+
+    while(aux) {
+        // Datos de la fila
+        cout << left << setw(20) << aux->paquete->getPrioridad() << setw(20) << aux->paquete->getID() << setw(20) << aux->paquete->getNum_seguimiento() << setw(20) << aux->paquete->getDNI() << endl;
+        // Separacion de columnas
+        cout << left << setw(20) << "______________" << setw(20) << "__________" << setw(20) << "_______________" << setw(20) << "___________" << endl;  
+        aux = aux ->siguiente;
+    }
+    cout << endl;
+}
+
 void Paquete::generarDNI()
 {
     char letras[] = "TRWAGMYFPDXBNJZSQVHLCKE" ;

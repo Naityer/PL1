@@ -100,6 +100,8 @@
   <VirtualDirectory Name="src">
     <VirtualDirectory Name="Souce Files">
       <VirtualDirectory Name="EEDD">
+        <File Name="Arbol.cpp"/>
+        <File Name="NodoArbol.cpp"/>
         <File Name="NodoLista.cpp"/>
         <File Name="Lista.cpp"/>
         <File Name="Pila.cpp"/>
@@ -113,6 +115,8 @@
     <VirtualDirectory Name="Header Files">
       <File Name="Gestor.hpp"/>
       <VirtualDirectory Name="EEDD">
+        <File Name="Arbol.hpp"/>
+        <File Name="NodoArbol.hpp"/>
         <File Name="NodoLista.hpp"/>
         <File Name="Lista.hpp"/>
         <File Name="Pila.hpp"/>

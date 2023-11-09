@@ -51,6 +51,7 @@ private:
     void generarNumSeguimiento(bool prioridad);
     void asignarID();
     bool isRepetido(int num_seguimiento);
+    void mostrar();
 };
 
 #endif // PAQUETE_HPP

@@ -1,3 +1,5 @@
+C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24\Arbol.cpp
+C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24\NodoArbol.hpp
 C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24\Cola.hpp
 C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24\NodoCola.hpp
 C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24\Lista.hpp
@@ -8,10 +10,12 @@ C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_
 C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24\Lista.cpp
 C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24\NodoPila.cpp
 C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24\NodoCola.cpp
+C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24\Arbol.hpp
 C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24\NodoLista.cpp
 C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24\Paquete.hpp
 C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24\Pila.hpp
 C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24\Gestor.hpp
+C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24\NodoArbol.cpp
 C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24\Gestor.cpp
 C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24\Paquete.cpp
 C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24\main.cpp
