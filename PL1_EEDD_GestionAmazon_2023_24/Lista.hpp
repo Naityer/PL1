@@ -9,19 +9,29 @@ public:
     Lista (); 
     ~Lista ();
     
-    void insertarNodo(Paquete* p, char c) ;
-    void buscarElemento(char c) ;
+    void insertarNodo(Paquete* p) ;
     bool listaVacia();
-    void recorrerLista(bool orden); // 1-True = DESCENDENTE 0-False = ASCENDENTE
-    void esPrimero();
-    void esUltimo();
+    
+    // GETTES
     int getLongitud();
+    Paquete* getPrimero();
+    Paquete* getUltimo();
+    
+    // SETTES
     void setLogitud(int v);
     
-    Paquete* valorActual();
+    Paquete* mostrarLista();
+    
 private:
-    pnodoLista primero, actual, final;
+    pnodoLista cabeza, actual, final;
+    Paquete* ultimo;
+    Paquete* primero;
     int longitud;
+    
+    // METODOS
+    void esUltimo(Paquete* p);
+    void esPrimero(Paquete* p);
+    void esCabeza();
 };
 
 

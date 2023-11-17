@@ -3,102 +3,68 @@
 Lista::Lista()
 {
     longitud = 0;
-    primero = actual = final = NULL;
+    cabeza = actual = final = NULL;
 }
 
-void Lista::insertarNodo(Paquete* p, char c) {
+void Lista::insertarNodo(Paquete* p) {
     
     pnodoLista aux;
-    char tipoInsercion;
-    tipoInsercion = c;
- 
-    if(listaVacia()) {
-        aux = new NodoLista (p, NULL, NULL);
-        final = primero = aux;
-        
-    } else if (tipoInsercion == 'f') { //Inserción por el final
-        aux= new NodoLista (p, NULL, NULL);
-        aux->anterior = final;
-        final->siguiente=aux;
-        final=aux;
-    }  
-    else if (tipoInsercion == 'p') { //Inserción por el principio
-        aux = new NodoLista (p, NULL, NULL);
-        aux->siguiente = primero;
-        primero->anterior = aux;
-        primero = aux;
+    if (listaVacia()) {
+    aux = new NodoLista(p, NULL, NULL);
+    final = cabeza = aux;
+    cout << "NODO ANADIDO: " << aux->paquete->getID();
+    } else if (final->paquete->getID() <= p->getID()) { // Inserción por el final
+        aux = new NodoLista(p, NULL, final);
+        final->siguiente = aux;
+        final = aux;
+        esUltimo(aux->paquete);
+    } else if (cabeza->paquete->getID() > p->getID()) { // Inserción por el principio
+        aux = new NodoLista(p, cabeza, NULL);
+        cabeza->anterior = aux;
+        cabeza = aux;
+        esPrimero(aux->paquete);
+    } else { // Inserción en medio de la lista
+        pnodoLista actual = cabeza->siguiente;
+        while (actual->paquete->getID() < p->getID()) {
+            actual = actual->siguiente;
+        }
+        aux = new NodoLista(p, actual, actual->anterior);
+        actual->anterior->siguiente = aux;
+        actual->anterior = aux;
     }
+    
     this->longitud++;
 }
 
-void Lista::buscarElemento(char c) {
-    
-    char prioridad; 
-    prioridad = c;
-    
-    // Títulos de las columnas
-    cout << left << setw(20) << "TIPO_PRIORIDAD" << setw(20) << "ID_PAQUETE" << setw(20) << "NUM_SEGUIMIENTO" << setw(20) << "DNI_CLIENTE" << endl;
-    cout << left << setw(20) << "______________" << setw(20) << "__________" << setw(20) << "_______________" << setw(20) << "___________" << endl;
-    
-    if(prioridad == 'f') { //Buscar por el final        
-        // Datos de la fila
-        cout << left << setw(20) << "URGENTE" << setw(20) << final->paquete->getID() << setw(20) << final->paquete->getNum_seguimiento() << setw(20) << final->paquete->getDNI() << endl;
-        // Separacion de columnas
-        cout << left << setw(20) << "______________" << setw(20) << "__________" << setw(20) << "_______________" << setw(20) << "___________" << endl;
-        
-    } else if(prioridad =='p') {//Buscar por el Principio
-        // Datos de la fila
-        cout << left << setw(20) << "ESTANDAR" << setw(20) << primero->paquete->getID() << setw(20) << primero->paquete->getNum_seguimiento() << setw(20) << primero->paquete->getDNI() << endl;
-        // Separacion de columnas
-        cout << left << setw(20) << "______________" << setw(20) << "__________" << setw(20) << "_______________" << setw(20) << "___________" << endl;
-    }
+Paquete* Lista::mostrarLista()
+{
+    pnodoLista aux;
+    Paquete* p;
+    esCabeza();
+    aux = cabeza;
+    p = aux->paquete;
+    cabeza = aux->siguiente;
+    return p;
 }
 
 bool Lista::listaVacia()
 {
-    return primero == NULL;
+    return cabeza == NULL;
 }
 
-void Lista::recorrerLista(bool orden)
+void Lista::esCabeza()
 {
-    pnodoLista aux;
-    
-    // Títulos de las columnas
-    cout << left << setw(20) << "ID_PAQUETE" << setw(20) << "NUM_SEGUIMIENTO" << setw(20) << "DNI_CLIENTE" << endl;
-    cout << left << setw(20) << "__________" << setw(20) << "_______________" << setw(20) << "___________" << endl;
-    
-    if (orden == true) { 
-        esPrimero();
-        aux = primero;
-        while(aux) {
-            cout << left << setw(20) << aux->paquete->getID() << setw(20) << aux->paquete->getNum_seguimiento() << setw(20) << aux->paquete->getDNI() << endl;
-            // Separacion de columnas
-            cout << left << setw(20) << "__________" << setw(20) << "_______________" << setw(20) << "___________" << endl; 
-            aux = aux->siguiente;
-        }
-
-    } else {
-        esUltimo();
-        aux = final; 
-        while(aux) {
-            cout << left << setw(20) << aux->paquete->getID() << setw(20) << aux->paquete->getNum_seguimiento() << setw(20) << aux->paquete->getDNI() << endl;
-            // Separacion de columnas
-            cout << left << setw(20) << "__________" << setw(20) << "_______________" << setw(20) << "___________" << endl; 
-            aux = aux->anterior;
-        }
-    }
-    
-    cout << endl;
+    actual = cabeza;
 }
 
-void Lista::esPrimero()
+void Lista::esUltimo(Paquete* p)
 {
-    actual = primero;
+    this->ultimo = p;
 }
 
-void Lista::esUltimo()
+void Lista::esPrimero(Paquete* p) 
 {
-    actual = final;
+    this->primero = p;
 }
 
 //GETTER
@@ -113,18 +79,27 @@ void Lista::setLogitud(int v)
     this->longitud = v;
 }
 
+Paquete* Lista::getPrimero()
+{
+    return primero;
+}
+
+Paquete* Lista::getUltimo()
+{
+    return ultimo;
+}
+
 Lista::~Lista()
 {
     pnodoLista aux;
-    esPrimero();
-    while (primero) {
-        aux = primero;
-        primero = primero->siguiente;
+    while (cabeza) {
+        aux = cabeza;
+        cabeza = cabeza->siguiente;
         longitud--;
         delete aux;
     }
     
-    primero = NULL;
+    cabeza = NULL;
     actual = NULL;
     final = NULL;
 }

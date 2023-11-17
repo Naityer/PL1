@@ -37,6 +37,23 @@ Paquete* Cola::eliminar()
     return p;
 }
 
+Paquete* Cola::mostrar()
+{
+    // La funcion MOSTRAR no extrae ni imprime como tal. Simplemente nos permite recorrec de forma dinamica la pila para
+    // poder hacer las asignacions de los paquetes y posteriormente mostrarlos
+    
+    pnodoCola nodo;
+    Paquete* p;
+    nodo = primero;
+    if(!nodo)
+        return NULL;
+    primero = nodo->siguiente;
+    p = nodo->paquete;
+    if(!primero)
+        ultimo = NULL;
+    return p;
+}
+
 Paquete* Cola::verPrimero()
 {
     return primero->paquete;

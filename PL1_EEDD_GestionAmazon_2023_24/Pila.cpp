@@ -29,13 +29,22 @@ Paquete* Pila::extraer()
     return p;
 }
 
-Paquete* Pila:: cima()
+Paquete* Pila::mostrar()
 {
-    //pnodoPila nodo;
-    if (!ultimo)
-        return NULL;
-    return ultimo->paquete;
+    
+    // La funcion MOSTRAR no extrae ni imprime como tal. Simplemente nos permite recorrec de forma dinamica la pila para
+    // poder hacer las asignacions de los paquetes y posteriormente mostrarlos
+    pnodoPila nodo;
+    Paquete* p;
+    if(!ultimo)
+        return 0;
+        
+    nodo = ultimo;
+    ultimo = nodo->siguiente;
+    p = nodo->paquete;
+    return p;
 }
+
 
 int Pila::getLongitud()
 {

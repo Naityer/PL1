@@ -40,6 +40,7 @@ public:
 private: 
     
     //ESTRUTURAS PARTE 1
+    PedidoControl* pedidoControl;
     Pila* pila;
     Cola* estacionA;
     Cola* estacionB;

@@ -11,7 +11,7 @@ public:
     
     void insertar(Paquete* p);
     Paquete* extraer();
-    Paquete* cima();
+    Paquete* mostrar();
     
     int getLongitud();
     void setLongitud(int v);

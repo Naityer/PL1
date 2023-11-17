@@ -99,6 +99,7 @@
   </Settings>
   <VirtualDirectory Name="src">
     <VirtualDirectory Name="Souce Files">
+      <File Name="PedidoControl.cpp"/>
       <VirtualDirectory Name="EEDD">
         <File Name="Arbol.cpp"/>
         <File Name="NodoArbol.cpp"/>
@@ -113,6 +114,7 @@
       <File Name="Gestor.cpp"/>
     </VirtualDirectory>
     <VirtualDirectory Name="Header Files">
+      <File Name="PedidoControl.hpp"/>
       <File Name="Gestor.hpp"/>
       <VirtualDirectory Name="EEDD">
         <File Name="Arbol.hpp"/>

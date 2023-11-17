@@ -11,16 +11,20 @@ Gestor::Gestor()
     estacionD = new Cola();
     listaEstandar = new Lista();
     listaUrgente = new Lista();
+    pedidoControl = new PedidoControl();
+    pedidoControl->generarArrayID();
+    pedidoControl->generarArraySeguimiento();
 }
 
 // INTERFAZ
 
 void Gestor::genera12Pedidos() 
 {
-    
     if(pila->getLongitud() < 48) {
         for(auto i = 1; i <= 12; i++) {
             Paquete *p = new Paquete();
+            char* DNIgenerado = pedidoControl->generarDNI();
+            p->setDNI(DNIgenerado);
             pila->insertar(p);
         }
     } else {
@@ -32,7 +36,12 @@ void Gestor::genera12Pedidos()
 
 void Gestor::muestraPedidos()
 {
-    pila->mostrar();
+    Paquete* p;
+    for (auto i=1; i<=pila->getLongitud(); ++i) {
+        p = pila->mostrar();
+        cout << "P." << i << "-";
+        p->mostrar(p->getID(), p->getNum_seguimiento());
+    }
     cout << "CANTIDAD PEDIDO = " << pila->getLongitud() << endl;
 }
 
@@ -51,31 +60,34 @@ void Gestor::encolarPedidos()
     
     cout << "Encolando " << pila->getLongitud() << " pedidos... " << endl;
     cout << "===================================================" << endl;
-    
     while(pila->getLongitud() > 0)
     {
-        
+        // POR CADA PAQUETE GENERAMOS UN ID y se lo asginamos
         paquete = pila->extraer();
-        paquete->setID();
+        int IDgenerado = pedidoControl->asignarID(paquete->getPrioridad());
+        paquete->setID(IDgenerado);
         
-        // 0 - PEDIDO ESTANDAR
-        if (paquete->getID() == 0) {
-            cout << "COLAS LLENAS !!! paquete CLIENTE: " << paquete->getDNI() << " ha sido eliminado" << endl;
+        //cout << "TAMANO DE ARRAY ID estandar : " << pedidoControl->vectorIDestandar.size() << endl;
+        //cout << "TAMANO DE ARRAY ID urgente : " << pedidoControl->vectorIDurgente.size() << endl;
+        
+        if (pedidoControl->vectorIDestandar.size() == 0) {
+            cout << "COLAS LLENAS ESTANDAR !!! paquete CLIENTE: " << paquete->getDNI() << " ha sido eliminado" << endl;
             paquete->~Paquete();
         }
-        else if(estacionA->getLongitud() <= estacionB->getLongitud() && paquete->getPrioridad() == 0 && paquete->getCountEstandar() <= 49) {
+        // 0 - PEDIDO ESTANDAR
+        else if(estacionA->getLongitud() <= estacionB->getLongitud() && paquete->getPrioridad() == 0) {
             cout << "Paquete ESTANDAR ID: " << paquete->getID() << " asginado a la Estacion A " << endl; 
             estacionA->insertar(paquete);
         } 
-        else if(estacionA->getLongitud() > estacionB->getLongitud() && paquete->getPrioridad() == 0 && paquete->getCountEstandar() <= 49) {
+        else if(estacionA->getLongitud() > estacionB->getLongitud() && paquete->getPrioridad() == 0) {
             cout << "Paquete ESTANDAR ID: " << paquete->getID() << " asginado a la Estacion B " << endl; 
             estacionB->insertar(paquete);
         } 
         // 1 - PEDIDO URGENTE
-        else if(estacionC->getLongitud() <= estacionD->getLongitud() && paquete->getPrioridad() == 1 && paquete->getCountUrgente() >= 51 && paquete->getCountUrgente() <= 99) {
+        else if(estacionC->getLongitud() <= estacionD->getLongitud() && paquete->getPrioridad() == 1) {
             cout << "Paquete URGENTE ID: " << paquete->getID() << " asginado a la Estacion C " << endl; 
             estacionC->insertar(paquete);
-        } else if (estacionC->getLongitud() > estacionD->getLongitud() && paquete->getPrioridad() == 1 && paquete->getCountUrgente() >= 51 && paquete->getCountUrgente() <= 99) {
+        } else if (estacionC->getLongitud() > estacionD->getLongitud() && paquete->getPrioridad() == 1) {
             cout << "Paquete URGENTE ID: " << paquete->getID() << " asginado a la Estacion D " << endl;
             estacionD->insertar(paquete);
         } 
@@ -84,18 +96,36 @@ void Gestor::encolarPedidos()
 
 void Gestor::muestraPedidosSalasAyB()
 {
+    Paquete* p;
+    
     cout << "\nESTACION-A " << "NUMERO PAQUETES = " <<estacionA->getLongitud() << endl;
-    estacionA->mostrar();
+    for (auto i= 1; i <= estacionA->getLongitud(); ++i) {
+        p = estacionA->mostrar();
+        p->mostrar(p->getID(), p->getNum_seguimiento());
+    }
+    
     cout << "\nESTACION-B " << "NUMERO PAQUETES = " <<estacionB->getLongitud() << endl;
-    estacionB->mostrar();
+    for (auto i= 1; i <= estacionB->getLongitud(); ++i) {
+        p = estacionB->mostrar();
+        p->mostrar(p->getID(), p->getNum_seguimiento());
+    }
 }
 
 void Gestor::muestraPedidosSalasCyD()
 {
+    Paquete* p;
+    
     cout << "\nESTACION-C " << "NUMERO PAQUETES = " <<estacionC->getLongitud() << endl;
-    estacionC->mostrar();
+    for (auto i= 1; i <= estacionC->getLongitud(); ++i) {
+        p = estacionC->mostrar();
+        p->mostrar(p->getID(), p->getNum_seguimiento());
+    }
+    
     cout << "\nESTACION-D " << "NUMERO PAQUETES = " <<estacionD->getLongitud() << endl;
-    estacionD->mostrar();
+    for (auto i= 1; i <= estacionD->getLongitud(); ++i) {
+        p = estacionD->mostrar();
+        p->mostrar(p->getID(), p->getNum_seguimiento());
+    }
 }
 
 void Gestor::borraPedidosColas()
@@ -120,37 +150,41 @@ void Gestor::enlistarPedidos()
     Paquete* enlistarD;
     int cantidadListados = 0;
     
-    while(estacionA->getLongitud() > 0 || estacionB->getLongitud() > 0 || estacionC->getLongitud() > 0 || estacionD->getLongitud() > 0)
+    while(estacionA->getLongitud() + estacionB->getLongitud() + estacionC->getLongitud() + estacionD->getLongitud() > 0)
     {
-        if (estacionB->getLongitud() > 0) {
-            cout << "\nCantidad estacionB = " << estacionB->getLongitud() << endl;
-            cout << "Paquete ESTANDAR (estacionB) " << enlistarB << " enlistado" << endl;
-            enlistarB = estacionB->eliminar(); // ESTANDAR
-            enlistarB->setNum_seguimiento(0);
-            listaEstandar->insertarNodo(enlistarB, 'p');  
-        
-        } else if(estacionA->getLongitud() > 0) {
+        if (estacionA->getLongitud() > 0) {
+            // ENLISTAR ESTACION A
             cout << "\nCantidad estacionA = " << estacionA->getLongitud() << endl;
             cout << "Paquete ESTANDAR (estacionA) " << enlistarA << " enlistado" << endl;
             enlistarA = estacionA->eliminar(); // ESTANDAR
-            enlistarA->setNum_seguimiento(0);
-            listaEstandar->insertarNodo(enlistarA, 'p');
-            
+            enlistarA->setNum_seguimiento(pedidoControl->asignarNumSeguimiento(enlistarA->getPrioridad()));
+            listaEstandar->insertarNodo(enlistarA);
+        
+        } else if(estacionB->getLongitud() > 0) {
+            // ENLISTAR ESTACION B
+            cout << "\nCantidad estacionB = " << estacionB->getLongitud() << endl;
+            cout << "Paquete ESTANDAR (estacionB) " << enlistarB << " enlistado" << endl;
+            enlistarB = estacionB->eliminar(); // ESTANDAR
+            enlistarB->setNum_seguimiento(pedidoControl->asignarNumSeguimiento(enlistarB->getPrioridad()));
+            listaEstandar->insertarNodo(enlistarB);  
+        
         } else if (estacionC->getLongitud() > 0) {
+            // ENLISTAR ESTACION C
             cout << "\nCantidad estacionC = " << estacionC->getLongitud() << endl;
             cout << "Paquete URGENTE (estacionC) " << enlistarA << " enlistado" << endl;
             enlistarC = estacionC->eliminar(); // URGENTE
-            enlistarC->setNum_seguimiento(1);
-            listaUrgente->insertarNodo(enlistarC, 'p');    
-            
+            enlistarC->setNum_seguimiento(pedidoControl->asignarNumSeguimiento(enlistarC->getPrioridad()));
+            listaUrgente->insertarNodo(enlistarC);    
+        
         } else {
+            // ENLISTAR ESTACION D
             cout << "\nCantidad estacionD = " << estacionD->getLongitud() << endl;
             cout << "Paquete URGENTE (estacionD) " << enlistarA << " enlistado" << endl;
             enlistarD = estacionD->eliminar(); // URGENTE
-            enlistarD->setNum_seguimiento(1);
-            listaUrgente->insertarNodo(enlistarD, 'p');
-            
-        }
+            enlistarD->setNum_seguimiento(pedidoControl->asignarNumSeguimiento(enlistarD->getPrioridad()));
+            listaUrgente->insertarNodo(enlistarD);
+        }    
+        
         cantidadListados++;
     }
     
@@ -174,25 +208,31 @@ void Gestor::borrarPedidosListas()
 
 void Gestor::muestraPedidosEstandar()
 {
-    cout << "\nPOSTEMPAQUETADO AREA ESTANDAR " << " NUMERO PAQUETES = " << listaEstandar->getLongitud() << endl;
-    cout << "\n======================================================================================= " << endl;
-    listaEstandar->recorrerLista(true);
+    Paquete* p;
+    for (auto i=1; i<= listaEstandar->getLongitud() ; ++i) {
+        p = listaEstandar->mostrarLista();
+        p->mostrar(p->getID(), p->num_seguimiento);
+    }
 }
 
 void Gestor::muestraPedidosUrgentes()
 {
-    cout << "\nPOSTEMPAQUETADO AREA URGENTE " << " NUMERO PAQUETES = " << listaUrgente->getLongitud();
-    cout << "\n=======================================================================================" << endl;
-    listaUrgente->recorrerLista(true);
+    Paquete* p;
+    for (auto i=1; i<= listaUrgente->getLongitud() ; ++i) {
+        p = listaUrgente->mostrarLista();
+        p->mostrar(p->getID(), p->num_seguimiento);
+    }
 }
 
 void Gestor::buscarPedidos()
 {
     if(listaEstandar->getLongitud() + listaUrgente->getLongitud() > 0) {
-        //listaEstandar->recorrerLista(true);
-        listaEstandar->buscarElemento('p');
-        //listaUrgente->recorrerLista(false);
-        listaUrgente->buscarElemento('f');
+        Paquete* p;
+        p = listaEstandar->getUltimo();
+        p->mostrar(p->getID(), p->getNum_seguimiento());
+        
+        p = listaUrgente->getPrimero();
+        p->mostrar(p->getID(), p->getNum_seguimiento());
     
     }
 }
