@@ -8,7 +8,10 @@ int main(int argc, char** argv)
 {
     Gestor gestor;
     char opcion;
-
+    
+    // Establecer una nueva semilla basada en el tiempo actual
+    srand(static_cast<unsigned int>(time(0)));
+    
     do {
 
         cout << "\n\t--------------------------------------------------------------"
@@ -19,8 +22,7 @@ int main(int argc, char** argv)
              << gestor.PedidosEnEstacionD()
              << " \n\tPedidos en las listas:\n \t\tEstandar-> "
              << gestor.PedidosEnListaEstandar() << "\tUrgentes-> " << gestor.PedidosEnListaUrgentes()
-//PARTE 2             << "\n\tPedidos en el arbol -> " << 0 /*gestor.PedidosEnArbol()*/
-             << "\n";
+             << "\n\tPedidos en el arbol -> " /* << gestor.PedidosEnArbol() << "\n" */;
         cout << "\t----------------------------------------------------------------"
                 "------\n\n";
 
@@ -42,7 +44,7 @@ int main(int argc, char** argv)
                 "prioridad.\n";
         cout << "\tM. Reiniciar el programa.\n";
         
- /*     //PARTE 2
+     //PARTE 2
 
         cout << "\tN. Crear y dibujar el ABB en consola.\n";
         cout << "\tO. Mostrar los datos de todos los Pedidos Estandar ordenados "
@@ -61,7 +63,7 @@ int main(int argc, char** argv)
         cout << "\tU. Eliminar un Pedido indicado por su numero de seguimiento "
                 "(que se pide desde consola) y mostrar el arbol "
                 "resultante tras la eliminacion de dicho Pedido.\n";
-*/
+
 
         cout << "\tS. Salir.\n\n";
 
@@ -112,30 +114,30 @@ int main(int argc, char** argv)
         case 'M':
             gestor.reiniciar();
             break;
-
-/*      //PARTE 2
-            break;
         case 'N':
-            //...;
+            gestor.crear_dibujar_ABB();
             break;
         case 'O':
-            //...;
+            gestor.mostrarEstandarOrdenados();
             break;
         case 'P':
-            //...;
+            gestor.mostrarUrgentesOrdenados();
             break;
         case 'Q':
-            //...;
+            gestor.pedidosInorden_ABB();
             break;
         case 'R':
-            //...;
+            gestor.buscar_ABB();
             break;
         case 'T':
-            //...;
+            gestor.contarPedidos_ABB();
             break;
         case 'U':
-            //...;
-            break;*/
+            gestor.pedidosNodoHoja_ABB();
+            break;
+        case 'V':
+            gestor.eliminarPedido_ABB();
+            break;
         case 'S':
             cout << "Saliendo del programa...\n";
             break;

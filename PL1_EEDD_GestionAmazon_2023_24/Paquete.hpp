@@ -25,7 +25,7 @@ public:
     bool setPrioridad();
     void setID(int IDgenerado);
     void setNum_seguimiento(int seguimientoGenerado);
-    void setDNI(char* DNIgenerado);
+    void setDNI(string DNIgenerado);
     ~Paquete();
 
     
@@ -33,13 +33,15 @@ private:
 
 //ATRIBUTOS
     bool prioridad;
-    int ID {0};
-    int num_seguimiento{0};
+    int ID;
+    int num_seguimiento;
     char DNI[10];
 
 //METODOS
-    void mostrar(int ID, int num_seguimiento);
+    void mostrar();
     friend class Gestor;
+    friend class Pila;
+    friend class Cola;
     friend class Lista;
 };
 

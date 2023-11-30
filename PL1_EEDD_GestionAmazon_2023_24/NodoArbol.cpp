@@ -1,22 +1,10 @@
-//#ifndef NODOARBOL_HPP
-//#define NODOARBOL_HPP
-//#include <iostream>
-//
-//class NodoArbol
-//{
-//public:
-//    NodoArbol(Paquete* dato,NodoArbol*);
-//    
-//    ~NodoArbol();
-//
-//private:
-//    Paquete* dato; //
-//    NodoArbol* izq;
-//    NodoArbol* der;
-//    NodoArbol* padre;
-//   
-//
-//    friend class Arbol;
-//};
-//typedef NodoArbol* pnodoAbb;
-//#endif // NODOARBOL_HPP
+#include "NodoArbol.hpp"
+
+NodoArbol::NodoArbol(Paquete* paquete)
+{
+    this->paquete = paquete;
+    this->izq = nullptr;
+    this->der = nullptr;
+}
+
+NodoArbol::~NodoArbol() {}

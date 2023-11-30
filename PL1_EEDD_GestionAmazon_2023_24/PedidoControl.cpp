@@ -2,24 +2,24 @@
 
 PedidoControl::PedidoControl()
 {
-    
+    this->ID = 0;
+    this->num_seguimiento = 0;
 }
 
-char* PedidoControl::generarDNI()
+string PedidoControl::generarDNI()
 {
-    char* DNIgenerado = new char[10];
     char letras[] = "TRWAGMYFPDXBNJZSQVHLCKE" ;
     int numDNI = 0, aux = 1E7;
     for(int i = 0; i < 8; i++) {
         int num = rand() % 10;
-        DNIgenerado[i] = '0' + num;
+        DNI[i] = '0' + num;
         numDNI = numDNI + num * aux;
         aux /= 10;
     }
     
-    DNIgenerado[8] = letras[numDNI % 23];
-    DNIgenerado[9] = '\0';
-    return DNIgenerado;
+    this->DNI[8] = letras[numDNI % 23];
+    this->DNI[9] = '\0';
+    return string(DNI);
 }
 
 void PedidoControl::generarArrayID()
@@ -40,15 +40,15 @@ int PedidoControl::asignarID(bool prioridad)
     
     if (vectorIDestandar.size() > 0 && prioridad == 0) {
         // Elegir un número aleatorio y eliminarlo del vector
-        int indiceAleatorio = rand() % vectorIDestandar.size();
-        int numeroSelecionado = vectorIDestandar[indiceAleatorio];
+        indiceAleatorio = rand() % vectorIDestandar.size();
+        numeroSelecionado = vectorIDestandar[indiceAleatorio];
         vectorIDestandar.erase(vectorIDestandar.begin() + indiceAleatorio);
 
         return numeroSelecionado;
     } else {
         // Elegir un número aleatorio y eliminarlo del vector
-        int indiceAleatorio = rand() % vectorIDurgente.size();
-        int numeroSelecionado = vectorIDurgente[indiceAleatorio];
+        indiceAleatorio = rand() % vectorIDurgente.size();
+        numeroSelecionado = vectorIDurgente[indiceAleatorio];
         vectorIDurgente.erase(vectorIDurgente.begin() + indiceAleatorio);
 
         return numeroSelecionado;
@@ -74,15 +74,15 @@ int PedidoControl::asignarNumSeguimiento(bool prioridad)
     
     if (vectorSeguimientoEstandar.size() > 0 && prioridad == 0) {
         // Elegir un número aleatorio y eliminarlo del vector
-        int indiceAleatorio = rand() % vectorSeguimientoEstandar.size();
-        int numeroSelecionado = vectorSeguimientoEstandar[indiceAleatorio];
+        indiceAleatorio = rand() % vectorSeguimientoEstandar.size();
+        numeroSelecionado = vectorSeguimientoEstandar[indiceAleatorio];
         vectorSeguimientoEstandar.erase(vectorSeguimientoEstandar.begin() + indiceAleatorio);
 
         return numeroSelecionado;
     } else {
          // Elegir un número aleatorio y eliminarlo del vector
-        int indiceAleatorio = rand() % vectorSeguimientoUrgente.size();
-        int numeroSelecionado = vectorSeguimientoUrgente[indiceAleatorio];
+        indiceAleatorio = rand() % vectorSeguimientoUrgente.size();
+        numeroSelecionado = vectorSeguimientoUrgente[indiceAleatorio];
         vectorSeguimientoUrgente.erase(vectorSeguimientoUrgente.begin() + indiceAleatorio);
 
         return numeroSelecionado;

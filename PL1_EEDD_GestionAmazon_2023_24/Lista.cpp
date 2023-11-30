@@ -3,16 +3,16 @@
 Lista::Lista()
 {
     longitud = 0;
-    cabeza = actual = final = NULL;
+    principio = cabeza = actual = final = NULL;
 }
 
 void Lista::insertarNodo(Paquete* p) {
     
     pnodoLista aux;
     if (listaVacia()) {
-    aux = new NodoLista(p, NULL, NULL);
-    final = cabeza = aux;
-    cout << "NODO ANADIDO: " << aux->paquete->getID();
+        aux = new NodoLista(p, NULL, NULL);
+        final = cabeza = aux;
+        cout << "NODO ANADIDO: " << aux->paquete->getID();
     } else if (final->paquete->getID() <= p->getID()) { // Inserción por el final
         aux = new NodoLista(p, NULL, final);
         final->siguiente = aux;
@@ -21,7 +21,7 @@ void Lista::insertarNodo(Paquete* p) {
     } else if (cabeza->paquete->getID() > p->getID()) { // Inserción por el principio
         aux = new NodoLista(p, cabeza, NULL);
         cabeza->anterior = aux;
-        cabeza = aux;
+        principio = cabeza = aux;
         esPrimero(aux->paquete);
     } else { // Inserción en medio de la lista
         pnodoLista actual = cabeza->siguiente;
@@ -33,18 +33,60 @@ void Lista::insertarNodo(Paquete* p) {
         actual->anterior = aux;
     }
     
+    // Después de la inserción, enlazar los últimos paquetes al anterior
+    if (final->anterior != NULL) {
+        final->anterior->siguiente = final;
+    }
+    
     this->longitud++;
 }
 
-Paquete* Lista::mostrarLista()
+void Lista::mostrarLista(bool vista)
 {
+    pnodoLista aux = (vista) ? cabeza : final;
+    cout << "El contenido de la LISTA es: \n" << endl;
+    cout << "==========================================================================================================" << endl;
+    
+    while (aux) {
+        aux->paquete->mostrar();
+        aux = (vista) ? aux->siguiente : aux->anterior;
+    }
+}
+
+Paquete* Lista::eliminar(bool modoEliminacion) {
+    
+    if (listaVacia()) {
+        cout << "La lista está vacía. No se puede eliminar ningún nodo." << endl;
+        return nullptr;
+    }
+
+    Paquete* paqueteEliminado;
     pnodoLista aux;
-    Paquete* p;
-    esCabeza();
-    aux = cabeza;
-    p = aux->paquete;
-    cabeza = aux->siguiente;
-    return p;
+
+    if (modoEliminacion) {  // Modo eliminación normal (desde el principio)
+        aux = cabeza;
+        if (cabeza == final) {  // Solo hay un elemento en la lista
+            cabeza = final = nullptr;
+        } else {
+            cabeza = cabeza->siguiente;
+            cabeza->anterior = nullptr;
+        }
+    } else {  // Modo eliminación en sentido contrario (desde el final)
+        aux = final;
+        if (cabeza == final) {  // Solo hay un elemento en la lista
+            cabeza = final = nullptr;
+        } else {
+            final = final->anterior;
+            final->siguiente = nullptr;
+        }
+    }
+
+    paqueteEliminado = aux->paquete;
+    delete aux;
+
+    this->longitud--;
+
+    return paqueteEliminado;
 }
 
 bool Lista::listaVacia()

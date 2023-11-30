@@ -10,8 +10,8 @@ public:
     ~Pila();
     
     void insertar(Paquete* p);
+    void mostrar();
     Paquete* extraer();
-    Paquete* mostrar();
     
     int getLongitud();
     void setLongitud(int v);

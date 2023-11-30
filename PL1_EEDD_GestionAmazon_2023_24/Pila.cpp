@@ -29,20 +29,15 @@ Paquete* Pila::extraer()
     return p;
 }
 
-Paquete* Pila::mostrar()
+void Pila::mostrar()
 {
-    
-    // La funcion MOSTRAR no extrae ni imprime como tal. Simplemente nos permite recorrec de forma dinamica la pila para
-    // poder hacer las asignacions de los paquetes y posteriormente mostrarlos
-    pnodoPila nodo;
-    Paquete* p;
-    if(!ultimo)
-        return 0;
-        
-    nodo = ultimo;
-    ultimo = nodo->siguiente;
-    p = nodo->paquete;
-    return p;
+    pnodoPila aux = ultimo;
+    cout << "El contenido de la PILA es: \n" << endl;
+    cout << "==========================================================================================================" << endl;
+    while(aux) {
+        aux->paquete->mostrar();
+        aux = aux->siguiente;
+    }
 }
 
 

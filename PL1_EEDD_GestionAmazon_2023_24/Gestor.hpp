@@ -2,7 +2,7 @@
 #include "Pila.hpp"
 #include "Cola.hpp"
 #include "Lista.hpp"
-//#include "Arbol.hpp"
+#include "Arbol.hpp"
 
 #ifndef GESTOR_HPP
 #define GESTOR_HPP
@@ -26,6 +26,16 @@ public:
     void muestraPedidosUrgentes(); // Option K
     void buscarPedidos(); // Option L
     void reiniciar(); // Option M
+    
+    //ARBOLES
+    void crear_dibujar_ABB();
+    void mostrarEstandarOrdenados();
+    void mostrarUrgentesOrdenados();
+    void pedidosInorden_ABB();
+    void buscar_ABB();
+    void contarPedidos_ABB();
+    void pedidosNodoHoja_ABB();
+    void eliminarPedido_ABB();
     ~Gestor();
     
     int PedidosEnPila();
@@ -48,7 +58,7 @@ private:
     Cola* estacionD;
     Lista* listaEstandar;
     Lista* listaUrgente;
-//    Arbol* arbol;
+    Arbol* arbol;
 
 };
 

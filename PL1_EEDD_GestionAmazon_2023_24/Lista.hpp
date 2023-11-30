@@ -20,18 +20,20 @@ public:
     // SETTES
     void setLogitud(int v);
     
-    Paquete* mostrarLista();
-    
 private:
-    pnodoLista cabeza, actual, final;
+    pnodoLista principio, cabeza, actual, final;
     Paquete* ultimo;
     Paquete* primero;
     int longitud;
     
     // METODOS
+    void mostrarLista(bool vista);
     void esUltimo(Paquete* p);
     void esPrimero(Paquete* p);
     void esCabeza();
+    Paquete* eliminar(bool modoEliminacion);
+    
+    friend class Gestor;
 };
 
 

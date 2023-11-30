@@ -11,7 +11,7 @@ public:
     
     void insertar(Paquete* p);
     Paquete* eliminar();
-    Paquete* mostrar();
+    void mostrar();
     Paquete* verPrimero();
     
     int getLongitud();

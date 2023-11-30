@@ -11,6 +11,7 @@ Gestor::Gestor()
     estacionD = new Cola();
     listaEstandar = new Lista();
     listaUrgente = new Lista();
+    arbol = new Arbol();
     pedidoControl = new PedidoControl();
     pedidoControl->generarArrayID();
     pedidoControl->generarArraySeguimiento();
@@ -23,7 +24,7 @@ void Gestor::genera12Pedidos()
     if(pila->getLongitud() < 48) {
         for(auto i = 1; i <= 12; i++) {
             Paquete *p = new Paquete();
-            char* DNIgenerado = pedidoControl->generarDNI();
+            string DNIgenerado = pedidoControl->generarDNI();
             p->setDNI(DNIgenerado);
             pila->insertar(p);
         }
@@ -32,16 +33,70 @@ void Gestor::genera12Pedidos()
     }
 }
 
+//ZONA ARBOLES 
+
+void Gestor::crear_dibujar_ABB()
+{
+    Paquete* p;
+    Paquete* paqueteFicticio = new Paquete();
+    paqueteFicticio->setID(500);
+    arbol->insertar(paqueteFicticio);
+    
+    while(listaEstandar->getLongitud() > 0) {
+        p = listaEstandar->eliminar(true);
+        arbol->insertar(p);
+        cout << "ID extraido de la lista (ESTANDAR) : " << p->getID() << endl;
+    }
+    
+    while(listaUrgente->getLongitud() > 0) {
+        arbol->insertar(listaUrgente->eliminar(true));
+        cout << "ID extraido de la lista (URGENTE) : " << p->getID() << endl;
+    }
+    
+    arbol->dibujar();
+}
+
+void Gestor::mostrarEstandarOrdenados()
+{
+    
+}
+
+void Gestor::mostrarUrgentesOrdenados()
+{
+    
+}
+
+void Gestor::pedidosInorden_ABB()
+{
+    
+}
+
+void Gestor::buscar_ABB()
+{
+    
+}
+
+void Gestor::contarPedidos_ABB()
+{
+    
+}
+
+void Gestor::pedidosNodoHoja_ABB()
+{
+    
+}
+
+void Gestor::eliminarPedido_ABB()
+{
+    
+}
+
+
 // ZONA PILAS
 
 void Gestor::muestraPedidos()
 {
-    Paquete* p;
-    for (auto i=1; i<=pila->getLongitud(); ++i) {
-        p = pila->mostrar();
-        cout << "P." << i << "-";
-        p->mostrar(p->getID(), p->getNum_seguimiento());
-    }
+    pila->mostrar();
     cout << "CANTIDAD PEDIDO = " << pila->getLongitud() << endl;
 }
 
@@ -96,36 +151,20 @@ void Gestor::encolarPedidos()
 
 void Gestor::muestraPedidosSalasAyB()
 {
-    Paquete* p;
-    
     cout << "\nESTACION-A " << "NUMERO PAQUETES = " <<estacionA->getLongitud() << endl;
-    for (auto i= 1; i <= estacionA->getLongitud(); ++i) {
-        p = estacionA->mostrar();
-        p->mostrar(p->getID(), p->getNum_seguimiento());
-    }
+    estacionA->mostrar();
     
     cout << "\nESTACION-B " << "NUMERO PAQUETES = " <<estacionB->getLongitud() << endl;
-    for (auto i= 1; i <= estacionB->getLongitud(); ++i) {
-        p = estacionB->mostrar();
-        p->mostrar(p->getID(), p->getNum_seguimiento());
-    }
+    estacionB->mostrar();
 }
 
 void Gestor::muestraPedidosSalasCyD()
 {
-    Paquete* p;
-    
     cout << "\nESTACION-C " << "NUMERO PAQUETES = " <<estacionC->getLongitud() << endl;
-    for (auto i= 1; i <= estacionC->getLongitud(); ++i) {
-        p = estacionC->mostrar();
-        p->mostrar(p->getID(), p->getNum_seguimiento());
-    }
+    estacionC->mostrar();
     
     cout << "\nESTACION-D " << "NUMERO PAQUETES = " <<estacionD->getLongitud() << endl;
-    for (auto i= 1; i <= estacionD->getLongitud(); ++i) {
-        p = estacionD->mostrar();
-        p->mostrar(p->getID(), p->getNum_seguimiento());
-    }
+    estacionD->mostrar();
 }
 
 void Gestor::borraPedidosColas()
@@ -208,20 +247,12 @@ void Gestor::borrarPedidosListas()
 
 void Gestor::muestraPedidosEstandar()
 {
-    Paquete* p;
-    for (auto i=1; i<= listaEstandar->getLongitud() ; ++i) {
-        p = listaEstandar->mostrarLista();
-        p->mostrar(p->getID(), p->num_seguimiento);
-    }
+    listaEstandar->mostrarLista(true);
 }
 
 void Gestor::muestraPedidosUrgentes()
 {
-    Paquete* p;
-    for (auto i=1; i<= listaUrgente->getLongitud() ; ++i) {
-        p = listaUrgente->mostrarLista();
-        p->mostrar(p->getID(), p->num_seguimiento);
-    }
+   listaUrgente->mostrarLista(true);
 }
 
 void Gestor::buscarPedidos()
@@ -229,10 +260,10 @@ void Gestor::buscarPedidos()
     if(listaEstandar->getLongitud() + listaUrgente->getLongitud() > 0) {
         Paquete* p;
         p = listaEstandar->getUltimo();
-        p->mostrar(p->getID(), p->getNum_seguimiento());
+        p->mostrar();
         
         p = listaUrgente->getPrimero();
-        p->mostrar(p->getID(), p->getNum_seguimiento());
+        p->mostrar();
     
     }
 }

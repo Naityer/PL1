@@ -2,8 +2,7 @@
 
 Cola::Cola()
 {
-    primero = NULL;
-    ultimo = NULL;
+    primero = ultimo = NULL;
     longitud = 0;
 }
 
@@ -12,12 +11,14 @@ void Cola::insertar(Paquete* p)
     pnodoCola nuevo;
     nuevo = new NodoCola(p);
     
-    if(ultimo)
+    if(ultimo) {
         ultimo->siguiente = nuevo;
+    }
     ultimo = nuevo;
     
-    if(!primero)
+    if(!primero) {
         primero = nuevo;
+    }
     longitud++;
 }
 
@@ -27,31 +28,24 @@ Paquete* Cola::eliminar()
     Paquete* p;
     nodo = primero;
     if(!nodo)
-        return NULL;
+        primero = NULL;  
     primero = nodo->siguiente;
     p = nodo->paquete;
     delete nodo;
     if(!primero)
-        ultimo = NULL;
+        primero = NULL;
     longitud--;
     return p;
 }
 
-Paquete* Cola::mostrar()
+void Cola::mostrar()
 {
-    // La funcion MOSTRAR no extrae ni imprime como tal. Simplemente nos permite recorrec de forma dinamica la pila para
-    // poder hacer las asignacions de los paquetes y posteriormente mostrarlos
-    
-    pnodoCola nodo;
-    Paquete* p;
-    nodo = primero;
-    if(!nodo)
-        return NULL;
-    primero = nodo->siguiente;
-    p = nodo->paquete;
-    if(!primero)
-        ultimo = NULL;
-    return p;
+    pnodoCola aux = primero;
+    cout << "==========================================================================================================" << endl;
+    while(aux) {
+        aux->paquete->mostrar();
+        aux = aux->siguiente;
+    }
 }
 
 Paquete* Cola::verPrimero()

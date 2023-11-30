@@ -14,9 +14,11 @@ public:
     ~PedidoControl();
 
 //ATRIBUTOS
+    int indiceAleatorio;
+    int numeroSelecionado;
     bool prioridad;
-    int ID {0};
-    int num_seguimiento{0};
+    int ID;
+    int num_seguimiento;
     char DNI[10];
     
     vector<int> vectorIDestandar;
@@ -27,11 +29,12 @@ public:
 private:
     
 //METODOS
-    char* generarDNI();
+    string generarDNI();
     void generarArrayID();
     void generarArraySeguimiento();
     int asignarNumSeguimiento(bool prioridad);
     int asignarID(bool prioridad);
+    
     friend class Gestor;
 };
 

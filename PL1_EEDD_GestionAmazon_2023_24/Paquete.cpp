@@ -3,11 +3,13 @@
 Paquete::Paquete()
 {
     this->prioridad = (rand() % 2);  // 0 = Estandar ; 1 = Urgente
+    this->ID = 0;
+    this->num_seguimiento = 0;
 }
 
 //FUNCIONES DE PAQUETES ==============================================================================================
 
-void Paquete::mostrar(int ID, int num_seguimiento)
+void Paquete::mostrar()
 {
      // Utilización de la operación ternaria para la asignación condicional
     string asignacion = (prioridad == 0) ? "estandar" : "urgente";
@@ -38,8 +40,8 @@ void Paquete::setNum_seguimiento(int seguimientoGenerado)
     this->num_seguimiento = seguimientoGenerado;
 }
 
-void Paquete::setDNI(char* DNIgenerado){
-    strcpy(DNI, DNIgenerado);
+void Paquete::setDNI(string DNIgenerado){
+    strcpy(DNI, DNIgenerado.c_str());
 }
 
 
