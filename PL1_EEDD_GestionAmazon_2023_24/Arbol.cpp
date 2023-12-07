@@ -10,36 +10,148 @@ void Arbol::insertar(Paquete* p) {
 
 pnodoAbb Arbol::insertar(pnodoAbb nodo, Paquete* p)
 {
-    if (!nodo) {
-        cout << "NODO RAIZ " << p->getID() << endl;
+    if(!nodo)
         return new NodoArbol(p);
-    } else if (p->getPrioridad() == 0) {
-        // Intentar insertar en el lado derecho si está vacío
-        if (p->getNum_seguimiento() >= nodo->paquete->getNum_seguimiento()) {
-            nodo->der = insertar(nodo->der, p);
-            cout << "Elemento insertado DER: " << p->getID() << endl;
-            return nodo;
-        } else {
-            // Insertar en el lado izquierdo si el derecho no está disponible
-            nodo->izq = insertar(nodo->izq, p);
-            cout << "Elemento insertado IZQ: " << p->getID() << endl;
-            return nodo;
-        }
-    } else {
-        // Intentar insertar en el lado izquierdo si está vacío
-        if (p->getNum_seguimiento() >= nodo->paquete->getNum_seguimiento()) {
-            nodo->izq = insertar(nodo->izq, p);
-            cout << "Elemento insertado IZQ: " << p->getID() << endl;
-            return nodo;
-        } else {
-            // Insertar en el lado derecho si el izquierdo no está disponible
-            nodo->der = insertar(nodo->der, p);
-            cout << "Elemento insertado DER: " << p->getID() << endl;
-            return nodo;
-        }
-    }
+    if(p->num_seguimiento <= nodo->paquete->num_seguimiento)
+        nodo->izq = insertar(nodo->izq, p);
+    else
+        nodo->der = insertar(nodo->der, p);
+    return nodo;
 }
 
+// METODOS DE MOSTRAR EL ARBOL
+
+list<Paquete> Arbol::inorden(pnodoAbb nodo, std::list<Paquete>& Paquete_list, std::string tipoMostrar) {
+    
+    if (!nodo) {
+        return Paquete_list;
+    }
+    // Recorrer la parte izquierda
+    inorden(nodo->izq, Paquete_list, tipoMostrar);
+
+    if (nodo->paquete->num_seguimiento != 500 &&
+        ((tipoMostrar == "estandar" && nodo->paquete->prioridad == 0) ||
+        (tipoMostrar == "urgente" && nodo->paquete->prioridad == 1) ||
+        tipoMostrar == "todosPedidos")) {
+            
+            Paquete_list.push_back(*nodo->paquete);  // Assuming Paquete is a pointer
+    }
+
+    // Recorrer la parte derecha
+    inorden(nodo->der, Paquete_list, tipoMostrar);
+    
+    return Paquete_list;
+}
+
+int Arbol::minNumSeguimiento(pnodoAbb arbol) {
+    
+    if (arbol == nullptr) {
+        // Árbol vacío, devuelve un valor apropiado (puede ser -1)
+        return 0;
+    }
+
+    // Recorre en postorden 
+    int valorIzquierda = minNumSeguimiento(arbol->izq);
+
+    // Si el valor del nodo izquierdo es mayor o igual, detén la búsqueda
+    if ((valorIzquierda <= arbol->paquete->num_seguimiento) && valorIzquierda != 0) {
+        return valorIzquierda;
+    }
+    // Retorna el valor actual del nodo
+    return arbol->paquete->num_seguimiento;
+}
+
+int Arbol::maxNumSeguimiento(pnodoAbb arbol) {
+    
+    if (arbol == nullptr) {
+        // Árbol vacío, devuelve un valor apropiado (puede ser -1)
+        return 0;
+    }
+
+    // Recorre en postorden el subárbol derecho
+    int valorDerecha = maxNumSeguimiento(arbol->der);
+
+    // Si el valor del nodo derecho es menor, actualiza el resultado
+    if ((valorDerecha >= arbol->paquete->num_seguimiento) && valorDerecha < 500) {
+        return valorDerecha;
+    }
+
+    // Retorna el valor actual del nodo
+    return arbol->paquete->num_seguimiento;
+}
+
+
+// METODOS DE BUSQUEDA
+
+int Arbol::buscar(pnodoAbb nodo, TipoBusqueda tipo) {
+    
+    if (nodo == nullptr) {
+        // Árbol vacío
+        return 0;
+    }
+    
+    switch (tipo) {
+        case MENOR_SEGUIMIENTO:
+            // Recorre en postorden 
+            return minNumSeguimiento(nodo->izq);
+            
+            break;
+        case MAYOR_SEGUIMIENTO:
+            // Recorre en postorden
+            return maxNumSeguimiento(nodo->izq);
+            
+            break;
+        case MENOR_ID_URGENTE:
+            // Implementa la lógica para este caso si es necesario
+            break;
+        case MAYOR_ID_URGENTE:
+            // Implementa la lógica para este caso si es necesario
+            break;
+        default:
+            cout << "PAQUETE NO ENCONTRADO" << endl;
+            // Cambiar 0 al valor deseado de retorno para el caso por defecto
+            return 0;
+    }
+
+    return 0;
+}
+
+int Arbol::buscarAvazando(pnodoAbb nodo, TipoBusqueda tipo) {
+    if (nodo == nullptr) {
+        // Árbol vacío, devuelve un valor apropiado (puede ser -1)
+        return 0;
+    }
+
+    int valorIzquierda = buscarAvazando(nodo->izq, tipo) != 0 ? buscarAvazando(nodo->izq, tipo) : 0;
+    int valorDerecha = buscarAvazando(nodo->der, tipo) != 0 ? buscarAvazando(nodo->der, tipo) : 0;
+
+    switch (tipo) {
+        case MENOR_SEGUIMIENTO:
+            if ((valorIzquierda <= nodo->paquete->num_seguimiento) && valorIzquierda != 0) {
+                return valorIzquierda;
+            }
+            break;
+        case MAYOR_SEGUIMIENTO:
+            if ((valorDerecha >= nodo->paquete->num_seguimiento) && valorDerecha < 500) {
+                return valorDerecha;
+            }
+            break;
+        case MENOR_ID_URGENTE:
+            // Implementa la lógica para este caso si es necesario
+            break;
+        case MAYOR_ID_URGENTE:
+            // Implementa la lógica para este caso si es necesario
+            break;
+        default:
+            std::cout << "PAQUETE NO ENCONTRADO" << std::endl;
+            // Cambiar 0 al valor deseado de retorno para el caso por defecto
+            return 0;
+    }
+
+    return nodo->paquete->num_seguimiento;
+}
+
+//  METODOS PARA DIBUJAR EL ARBOL 
 
 void Arbol::pintar()
 {

@@ -39,7 +39,7 @@ void Gestor::crear_dibujar_ABB()
 {
     Paquete* p;
     Paquete* paqueteFicticio = new Paquete();
-    paqueteFicticio->setID(500);
+    paqueteFicticio->setNum_seguimiento(500);
     arbol->insertar(paqueteFicticio);
     
     while(listaEstandar->getLongitud() > 0) {
@@ -58,22 +58,53 @@ void Gestor::crear_dibujar_ABB()
 
 void Gestor::mostrarEstandarOrdenados()
 {
+    list<Paquete> Paquete_list;
+    Paquete_list = arbol->inorden(arbol->raiz, Paquete_list, "estandar");
     
+    cout << "Contenido ARBOL --> PEDIDOS ESTANDAR: " << endl;
+    for (auto paquete : Paquete_list) {
+        paquete.mostrar();
+    }
+    
+    cout << endl;
 }
 
 void Gestor::mostrarUrgentesOrdenados()
 {
+    list<Paquete> Paquete_list;
+    Paquete_list = arbol->inorden(arbol->raiz, Paquete_list, "urgente");
     
+    cout << "Contenido ARBOL --> PEDIDO URGENTE: " << endl;
+    for (auto paquete : Paquete_list) {
+        paquete.mostrar();
+    }
+    cout << endl;
 }
 
 void Gestor::pedidosInorden_ABB()
 {
+    list<Paquete> Paquete_list;
+    Paquete_list = arbol->inorden(arbol->raiz, Paquete_list, "todosPedidos");
     
+    cout << "Contenido ARBOL --> TODOS LOS PEDIDOS: " << endl;
+    for (auto paquete : Paquete_list) {
+        paquete.mostrar();
+    }
+    cout << endl;
 }
 
 void Gestor::buscar_ABB()
 {
+//    int valMin = arbol->postorden(arbol->raiz);
+//    cout << "Valor minimo es = " << valMin << endl;
     
+    int valMin = arbol->buscarAvazando(arbol->raiz, MENOR_SEGUIMIENTO);
+    cout << "El pedido estandar cuyo numero de seguimiento es el menor: " << valMin << endl;
+    
+    int valMax = arbol->buscarAvazando(arbol->raiz, MAYOR_SEGUIMIENTO);
+    cout << "El pedido estandar cuyo numero de seguimiento es el mayor: " << valMax << endl;
+//    cout << "El pedido urgente cuyo numero de ID es el menor: " << arbol->buscar(arbol->raiz, MENOR_ID_URGENTE) << endl;
+//    cout << "El pedido urgente cuyo numero de ID es el mayor: " << arbol->buscar(arbol->raiz, MAYOR_ID_URGENTE) << endl;
 }
 
 void Gestor::contarPedidos_ABB()

@@ -1,10 +1,12 @@
-#ifndef NODOARBOL_HPP
-#define NODOARBOL_HPP
-
 #include <iostream>
 #include "Paquete.hpp"
 #include <vector>
-#include <cstdlib> 
+#include <cstdlib>
+#include <list> 
+#include <algorithm> 
+
+#ifndef NODOARBOL_HPP
+#define NODOARBOL_HPP
 
 class NodoArbol
 {
@@ -19,5 +21,6 @@ private:
 
     friend class Arbol;
 };
+
 typedef NodoArbol* pnodoAbb;
 #endif // NODOARBOL_HPP

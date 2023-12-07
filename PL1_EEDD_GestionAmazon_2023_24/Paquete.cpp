@@ -14,14 +14,13 @@ void Paquete::mostrar()
      // Utilización de la operación ternaria para la asignación condicional
     string asignacion = (prioridad == 0) ? "estandar" : "urgente";
     
-    if (ID != 0) {
+    if (num_seguimiento != 0) {
+        // PEDIDO CON NUMERO DE SEGUIMIENTO
+        cout << left << setw(20) << "El pedido a nombre del titular con DNI " << this->DNI << " es de caracter " << asignacion << ", su ID es: " << this->ID << " y su numero de seguimiento es: " << this->num_seguimiento << endl;
+        
+    } else if (ID != 0) {
         // PEDIDO CON ID
         cout << left << setw(20) << "El pedido a nombre del titular con DNI " << this->DNI << " es de caracter " << asignacion << ", su ID es: " << this->ID << endl;
-        
-    } else if (num_seguimiento != 0) {
-        // PEDIDO CON NUMERO DE SEGUIMIENTO
-        cout << left << setw(20) << "El pedido a nombre del titular con DNI " << this->DNI << " es de caracter " << asignacion << ", su ID es: " << this->ID << " y su numero de seguimiento es: " << endl;
-        
     } else {
         // PEDIDO SIN ID NI NUMERO DE SEGUIMIENTO
         cout << left << setw(20) << "El pedido a nombre del titular con DNI " << this->DNI << " es de caracter " << asignacion << endl;

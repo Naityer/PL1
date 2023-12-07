@@ -39,10 +39,12 @@ private:
 
 //METODOS
     void mostrar();
+    
     friend class Gestor;
     friend class Pila;
     friend class Cola;
     friend class Lista;
+    friend class Arbol;
 };
 
 #endif // PAQUETE_HPP
