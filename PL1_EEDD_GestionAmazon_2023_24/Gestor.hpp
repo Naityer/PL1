@@ -33,7 +33,7 @@ public:
     void mostrarUrgentesOrdenados();
     void pedidosInorden_ABB();
     void buscar_ABB();
-    void contarPedidos_ABB();
+    void contarPedidosImpares_ABB();
     void pedidosNodoHoja_ABB();
     void eliminarPedido_ABB();
     ~Gestor();

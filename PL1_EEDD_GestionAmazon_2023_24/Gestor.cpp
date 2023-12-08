@@ -97,29 +97,48 @@ void Gestor::buscar_ABB()
 {
 //    int valMin = arbol->postorden(arbol->raiz);
 //    cout << "Valor minimo es = " << valMin << endl;
+    arbol->dibujar();
     
-    int valMin = arbol->buscarAvazando(arbol->raiz, MENOR_SEGUIMIENTO);
-    cout << "El pedido estandar cuyo numero de seguimiento es el menor: " << valMin << endl;
+    int valMinSeg = arbol->buscarAvazando(arbol->raiz, MENOR_SEGUIMIENTO);
+    cout << "El pedido estandar cuyo numero de seguimiento es el menor: " << valMinSeg << endl;
     
-    int valMax = arbol->buscarAvazando(arbol->raiz, MAYOR_SEGUIMIENTO);
-    cout << "El pedido estandar cuyo numero de seguimiento es el mayor: " << valMax << endl;
-//    cout << "El pedido urgente cuyo numero de ID es el menor: " << arbol->buscar(arbol->raiz, MENOR_ID_URGENTE) << endl;
-//    cout << "El pedido urgente cuyo numero de ID es el mayor: " << arbol->buscar(arbol->raiz, MAYOR_ID_URGENTE) << endl;
+    int valMaxSeg = arbol->buscarAvazando(arbol->raiz, MAYOR_SEGUIMIENTO);
+    cout << "El pedido estandar cuyo numero de seguimiento es el mayor: " << valMaxSeg << endl;
+    
+    int valMenorID = arbol->buscarAvazando(arbol->raiz, MENOR_ID_URGENTE);
+    cout << "El pedido urgente cuyo numero de ID es el menor: " << valMenorID << endl;
+    int valMayorID = arbol->buscarAvazando(arbol->raiz, MAYOR_ID_URGENTE);
+    cout << "El pedido urgente cuyo numero de ID es el mayor: " << valMayorID << endl;
 }
 
-void Gestor::contarPedidos_ABB()
+void Gestor::contarPedidosImpares_ABB()
 {
-    
+    arbol->dibujar();
+    cout << "Numero de pedidos impares: " << arbol->contarImpares(arbol->raiz) << endl;
 }
 
 void Gestor::pedidosNodoHoja_ABB()
 {
+    vector <Paquete*> paquetesEnNodoHoja = arbol->obtenerPaquetesEnHojas(arbol->raiz);
     
+    arbol->dibujar();
+    cout << "CANTIDAD NODOS HOJAS: " << paquetesEnNodoHoja.size() << endl;
+    for (auto paquete : paquetesEnNodoHoja) {
+        paquete->mostrar();
+    }
+    cout << endl;
 }
 
 void Gestor::eliminarPedido_ABB()
 {
-    
+    arbol->dibujar();
+    int elementoAEliminar;
+    cout << "Eliminar paquete con num seguimiento: ";
+    cin >> elementoAEliminar;
+
+    // Llamar a la función para borrar el elemento
+    arbol->borrarElemento(elementoAEliminar, arbol->raiz);
+    arbol->dibujar();
 }
 
 

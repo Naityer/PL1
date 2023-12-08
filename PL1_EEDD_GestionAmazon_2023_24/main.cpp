@@ -56,11 +56,11 @@ int main(int argc, char** argv)
         cout << "\tR. Buscar en el ABB el Pedido Estándar con el numero de "
                 "seguimiento mas alto y mas bajo, asi como los Pedidos Urgentes "
                 "con el numero de ID mas alto y mas bajo.\n";
-        cout << "\tS. Contar el numero de Pedidos almacenados en el ABB cuyos "
+        cout << "\tT. Contar el numero de Pedidos almacenados en el ABB cuyos "
                 "numeros de seguimiento son impares.\n";
-        cout << "\tT. Mostrar los Pedidos que se encuentran almacenados en un nodo "
+        cout << "\tU. Mostrar los Pedidos que se encuentran almacenados en un nodo "
                 "hoja.\n";
-        cout << "\tU. Eliminar un Pedido indicado por su numero de seguimiento "
+        cout << "\tV. Eliminar un Pedido indicado por su numero de seguimiento "
                 "(que se pide desde consola) y mostrar el arbol "
                 "resultante tras la eliminacion de dicho Pedido.\n";
 
@@ -130,7 +130,7 @@ int main(int argc, char** argv)
             gestor.buscar_ABB();
             break;
         case 'T':
-            gestor.contarPedidos_ABB();
+            gestor.contarPedidosImpares_ABB();
             break;
         case 'U':
             gestor.pedidosNodoHoja_ABB();
