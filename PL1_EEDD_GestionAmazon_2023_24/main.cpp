@@ -22,7 +22,7 @@ int main(int argc, char** argv)
              << gestor.PedidosEnEstacionD()
              << " \n\tPedidos en las listas:\n \t\tEstandar-> "
              << gestor.PedidosEnListaEstandar() << "\tUrgentes-> " << gestor.PedidosEnListaUrgentes()
-             << "\n\tPedidos en el arbol -> " /* << gestor.PedidosEnArbol() << "\n" */;
+             << "\n\tPedidos en el arbol -> " << gestor.PedidosEnArbol() << "\n";
         cout << "\t----------------------------------------------------------------"
                 "------\n\n";
 

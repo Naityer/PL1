@@ -362,6 +362,11 @@ int Gestor::PedidosEnListaUrgentes()
     return pedidos;
 }
 
+int Gestor::PedidosEnArbol()
+{
+    return arbol->cantidad;
+}
+
 void Gestor::reiniciar()
 {
     borraPedidosPila();

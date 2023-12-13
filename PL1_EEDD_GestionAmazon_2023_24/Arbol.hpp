@@ -23,6 +23,7 @@ public:
 
 private:
     pnodoAbb raiz;
+    int cantidad;
     
     // METODOS PARA DIBUJAR EL ARBOL
     pnodoAbb insertar(pnodoAbb, Paquete* p);

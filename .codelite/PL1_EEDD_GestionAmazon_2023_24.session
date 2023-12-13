@@ -1,23 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Session Name="C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24.workspace">
-  <int Value="1" Name="m_selectedTab"/>
-  <wxString Value="C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24.workspace" Name="m_workspaceName"/>
-  <TabInfoArray Name="TabInfoArray">
-    <TabInfo>
-      <wxString Value="C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24\Gestor.cpp" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="0" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="C:\Users\tiand\OneDrive\Escritorio\PL1_GestorAmazon_EEDD\PL1_EEDD_GestionAmazon_2023_24\Arbol.cpp" Name="FileName"/>
-      <int Value="271" Name="FirstVisibleLine"/>
-      <int Value="288" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-  </TabInfoArray>
+<Session Name="D:\1er CUATRI\EE - EstructuraDeDatos\PECLDuqueReyTian\PL1_EEDD_GestionAmazon_2023_24.workspace">
+  <int Value="0" Name="m_selectedTab"/>
+  <wxString Value="D:\1er CUATRI\EE - EstructuraDeDatos\PECLDuqueReyTian\PL1_EEDD_GestionAmazon_2023_24.workspace" Name="m_workspaceName"/>
+  <TabInfoArray Name="TabInfoArray"/>
   <SerializedObject Name="m_breakpoints">
     <long Value="0" Name="Count"/>
   </SerializedObject>

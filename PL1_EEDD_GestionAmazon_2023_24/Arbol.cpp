@@ -2,10 +2,12 @@
 
 Arbol::Arbol() { 
     raiz = nullptr;
+    cantidad = 0;
 }
 
 void Arbol::insertar(Paquete* p) { 
     raiz = insertar(raiz, p); 
+    cantidad++;
 }
 
 pnodoAbb Arbol::insertar(pnodoAbb nodo, Paquete* p)

@@ -45,7 +45,7 @@ public:
     int PedidosEnEstacionD();
     int PedidosEnListaEstandar();
     int PedidosEnListaUrgentes();
-//    PedidosEnArbol()
+    int PedidosEnArbol();
     
 private: 
     
